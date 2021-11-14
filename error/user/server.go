@@ -2,10 +2,11 @@ package user
 
 import (
 	"database/sql"
+	"errors"
+	xerrors "github.com/pkg/errors"
 	"go-advance/error/dao"
 	"log"
 )
-import "github.com/pkg/errors"
 
 type User struct {
 	Name string
@@ -26,7 +27,7 @@ func (s *Server) GetUser(id string) (*Entity, error) {
 		return nil, nil
 	}
 	if err != nil {
-		log.Fatalf("original error: %T %v\n stack trace:\n%+v\n", errors.Cause(err), errors.Cause(err), err)
+		log.Printf("original error: %T %v\n stack trace:\n%+v\n", xerrors.Cause(err), xerrors.Cause(err), err)
 	}
 
 	return &Entity{
