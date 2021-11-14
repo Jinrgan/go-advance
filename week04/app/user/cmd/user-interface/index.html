@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+    <button type="button" id="query">请求数据</button>
+    <img src="data:image/png;base64,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" alt="">
+    <div id="content" style="background-color: aquamarine; width: 300px; height: 500px"></div>
+</body>
+<script type="text/javascript">
+    $("#query").click(function () {
+        $.ajax(
+            {
+                url:"http://127.0.0.1:8021/u/v1/user/list",
+                dataType: "json",
+                type: "get",
+                beforeSend: function(request) {
+                    request.setRequestHeader("Token", "data:image/png;base64,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")
+                },
+                success: function (result) {
+                    console.log(result.data);
+                    $("#content").text(result.data)
+                },
+                error: function (data) {
+                    alert("请求出错")
+                }
+            }
+        );
+    });
+</script>
+</html>
+

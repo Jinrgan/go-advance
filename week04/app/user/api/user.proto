@@ -1,0 +1,65 @@
+syntax = "proto3";
+package user.v1;
+option go_package = "e-commerce/user/api/gen/v1;userpb";
+import "google/protobuf/empty.proto";
+
+enum Roles {
+  TS_NOT_SPECIFIED = 0;
+  Normal = 1;
+  Admin = 2;
+}
+
+message CreateUserRequest {
+  string nick_name = 1;
+  string password = 2;
+  string mobile = 3;
+}
+
+message CreateUserResponse {
+  string id = 1;
+}
+
+message User {
+  string mobile = 1;
+  string nick_name = 2;
+  string birthday = 3;
+  string gender = 4;
+  Roles role = 5;
+}
+
+message UserEntity {
+  string id = 1;
+  User user = 2;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserByMobileRequest {
+  string mobile = 1;
+}
+
+message GetUsersRequest {
+  uint32 number = 1;
+  uint32 size = 2;
+}
+
+message GetUsersResponse {
+  int64 total = 1;
+  repeated UserEntity users = 2;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string nick_name = 2;
+  string gender = 3;
+  int64 birthday = 4;
+}
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser(GetUserRequest) returns (UserEntity);
+  rpc GetUserByMobile(GetUserByMobileRequest) returns (UserEntity);
+  rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
+}

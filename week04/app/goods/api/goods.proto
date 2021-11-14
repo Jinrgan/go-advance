@@ -1,0 +1,115 @@
+syntax = "proto3";
+package goods.v1;
+option go_package = "e-commerce/goods/api/gen/v1;goodspb";
+import "google/protobuf/empty.proto";
+
+message Goods {
+  string name = 1;
+  string goods_sn = 2;
+  string category_id = 3;
+  string brand_id = 4;
+  bool is_on_sale = 5;
+  bool is_ship_free = 6;
+  bool is_new = 7;
+  bool is_hot = 8;
+  int64 market_price = 9;
+  int64 shop_price = 10;
+  string brief = 11;
+  string style_images = 12;
+  string desc_images = 13;
+}
+
+message GoodsEntity {
+  string id = 1;
+  Goods goods = 2;
+}
+
+message GetGoodsRequest {
+  string id = 1;
+}
+
+message GetGoodsListRequest {
+  int64 min_price = 1;
+  int64 max_price = 2;
+  bool is_new = 3;
+  bool is_hot = 4;
+  int64 top_category = 5;
+  int64 pages = 6;
+  int64 pages_per_nums = 7;
+  string key_words = 9;
+  int64 brand = 10;
+}
+
+message GetGoodsListResponse {
+  repeated Goods goods = 1;
+}
+
+message UpdateGoodsResponse {}
+
+message DeleteGoodsRequest {
+  string id = 1;
+}
+
+message DeleteGoodsResponse {}
+
+message Category {
+  string name = 1;
+  string parent_id = 2;
+  int64 level = 3;
+  bool is_tab = 4;
+}
+
+message CreateCategoryResponse {}
+
+message GetCategoryRequest {
+  string name = 2;
+}
+
+message GetCategoriesRequest {}
+
+message GetCategoriesResponse {
+  repeated Category category = 1;
+}
+
+message GetSubCategoryRequest {
+  string name = 1;
+}
+
+message GetSubCategoryResponse {
+  int64 count = 1;
+  repeated Category category = 2;
+}
+
+message UpdateCategoryRequest {
+  string name = 1;
+  Category category = 2;
+}
+
+message DeleteCategoryRequest {
+  string id = 1;
+}
+
+message DeleteCategoryResponse {}
+
+message CreateBrandRequest {
+  string id = 1;
+  string name = 2;
+  string logo = 3;
+
+}
+
+service GoodsService {
+  rpc CreateGoods(Goods) returns (GoodsEntity);
+  rpc GetGoods(GetGoodsRequest) returns (Goods);
+  rpc GetGoodsList(GetGoodsListRequest) returns (GetGoodsListResponse);
+  rpc UpdateGoods(Goods) returns (UpdateGoodsResponse);
+  rpc DeleteGoods(DeleteGoodsRequest) returns (DeleteGoodsResponse);
+
+  rpc CreateCategory(Category) returns (CreateCategoryResponse);
+  rpc GetCategory(GetCategoryRequest) returns (Category);
+  rpc GetSubCategory(GetSubCategoryRequest) returns (GetSubCategoryResponse);
+  rpc GetCategories(GetCategoriesRequest) returns (GetCategoriesResponse);
+  rpc UpdateCategory(UpdateCategoryRequest) returns (Category);
+  rpc DeleteCategory(DeleteCategoryRequest) returns (google.protobuf.Empty);
+
+}

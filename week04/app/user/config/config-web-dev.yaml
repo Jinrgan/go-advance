@@ -1,0 +1,18 @@
+name: 'user-web'
+addr: '192.168.1.11:8021'
+service-name: 'user-service'
+
+sms:
+  expire: 300
+
+mysql:
+  addr: 'localhost:3306'
+  user: 'root'
+  password: 'root'
+  db: 'mxshop_user_srv'
+
+redis:
+  addr: 'localhost:6379'
+
+consul:
+  addr: 'localhost:8500'

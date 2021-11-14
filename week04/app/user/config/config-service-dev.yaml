@@ -1,0 +1,9 @@
+name: 'user-service'
+addr: '192.168.1.11'
+
+mysql:
+  addr: 'localhost:3306'
+  port: 3306
+  user: 'root'
+  password: 'root'
+  db: 'mxshop_user_srv'
